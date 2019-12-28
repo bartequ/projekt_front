@@ -53,21 +53,20 @@ class QuizBee extends Component {
     };
 
     render() {
-        console.log("questionList");
-        console.log(this.state.questionList);
-        console.log("questions");
-        console.log(this.state.questions);
     return (
       <div className="container">
           <div className="title">Quiz</div>
-          {this.state.questionList.length > 0 &&
+          {this.state.questions.length > 0 &&
           this.state.responses < 5 &&
-          this.state.questionList.map(
-              ({question, answers, correct, questionId}) => (
+          this.state.questions.map(
+              ({content, answerA, answerB, answerC, answerD, correct, id}) => (
                   <QuestionBox
-                    question={question}
-                    options={answers}
-                    key={questionId}
+                    question={content}
+                    answerA={answerA}
+                    answerB={answerB}
+                    answerC={answerC}
+                    answerD={answerD}
+                    key={id}
                     selected={answer => this.computeAnswer(answer, correct)}
                   />
                   )
