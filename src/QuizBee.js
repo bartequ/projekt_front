@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './assets/style.css';
-import quizService from "./quizService";
 import QuestionBox from "./Components/QuestionBox";
 import Result from "./Components/Result";
 import axios from 'axios'
@@ -8,19 +7,12 @@ import axios from 'axios'
 class QuizBee extends Component {
 
     state = {
-        questionList: [],
         questions: [],
         score: 0,
         responses: 0
     };
 
     getQuestions = () => {
-        quizService().then(question => {
-            this.setState({
-                questionList: question
-            });
-        });
-
         axios.get('http://localhost:8081/questions')
             .then((response) => {
                 this.setState({
@@ -61,7 +53,7 @@ class QuizBee extends Component {
           this.state.questions.map(
               ({content, answerA, answerB, answerC, answerD, correct, id}) => (
                   <QuestionBox
-                    question={content}
+                    content={content}
                     answerA={answerA}
                     answerB={answerB}
                     answerC={answerC}
