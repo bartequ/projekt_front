@@ -14,7 +14,7 @@ class Questions extends Component {
 
     getQuestions = () => {
         const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVrc2FuZHJhMSIsImV4cCI6MTU4MDcxNzA5OSwiaWF0IjoxNTgwNjgxMDk5fQ.S7PGY71dqyLU6FjmO3hFUoYoulRnCb57YyNlKZwEHkQ"
-        axios.get('http://localhost:8081/randQuestions', {
+        axios.get('http://localhost:8081/randQuestion', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
