@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import './assets/style.css';
-import QuestionBox from "./Components/QuestionBox";
-import Result from "./Components/Result";
+import '../App.css';
+import QuestionBox from "./QuestionBox";
+import Result from "./Result";
 import axios from 'axios'
 
-class QuizBee extends Component {
+class Questions extends Component {
 
     state = {
         questions: [],
@@ -12,8 +12,18 @@ class QuizBee extends Component {
         responses: 0
     };
 
+
+
     getQuestions = () => {
-        axios.get('http://localhost:8081/questions')
+        const config = {
+            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVrc2FuZHJhMSIsImV4cCI6MTU4MDY4ODc5OSwiaWF0IjoxNTgwNjUyNzk5fQ.LFrhhD9nL0uCP4eYehvAH17a4Ey766_beqsBUZ-f-Vw` }
+        };
+
+        const bodyParameters = {
+            key: "value"
+        };
+
+        axios.get('http://localhost:8081/randQuestions', bodyParameters, config)
             .then((response) => {
                 this.setState({
                     questions: response.data
@@ -37,6 +47,7 @@ class QuizBee extends Component {
     }
 
     playAgain = () => {
+        this.state.questions = [];
         this.getQuestions();
         this.setState({
             score: 0,
@@ -69,4 +80,4 @@ class QuizBee extends Component {
     }
 }
 
-export default QuizBee;
+export default Questions;
