@@ -28,11 +28,6 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
-
-        login(user).then(res => {
-            this.setState({ isLoading: true });
-
-            if (!res.error) {
                 axios.post('http://localhost:8081/authenticate', {})
                     .then((response) => {
                         prompt("du[a")
@@ -42,8 +37,6 @@ class Login extends Component {
                         this.setState({ data: err, isLoading: false });
                     });
                 this.props.history.push(`/Questions`)
-            }
-        })
     }
 
     render() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import '../assets/style.css';
 import QuestionBox from "./QuestionBox";
 import Result from "./Result";
 import axios from 'axios'
@@ -12,18 +12,13 @@ class Questions extends Component {
         responses: 0
     };
 
-
-
     getQuestions = () => {
-        const config = {
-            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVrc2FuZHJhMSIsImV4cCI6MTU4MDY4ODc5OSwiaWF0IjoxNTgwNjUyNzk5fQ.LFrhhD9nL0uCP4eYehvAH17a4Ey766_beqsBUZ-f-Vw` }
-        };
-
-        const bodyParameters = {
-            key: "value"
-        };
-
-        axios.get('http://localhost:8081/randQuestions', bodyParameters, config)
+        const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVrc2FuZHJhMSIsImV4cCI6MTU4MDcxNzA5OSwiaWF0IjoxNTgwNjgxMDk5fQ.S7PGY71dqyLU6FjmO3hFUoYoulRnCb57YyNlKZwEHkQ"
+        axios.get('http://localhost:8081/randQuestions', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then((response) => {
                 this.setState({
                     questions: response.data
@@ -47,7 +42,6 @@ class Questions extends Component {
     }
 
     playAgain = () => {
-        this.state.questions = [];
         this.getQuestions();
         this.setState({
             score: 0,
